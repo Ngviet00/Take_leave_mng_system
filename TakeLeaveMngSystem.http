@@ -1,0 +1,6 @@
+@TakeLeaveMngSystem_HostAddress = http://localhost:5005
+
+GET {{TakeLeaveMngSystem_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
