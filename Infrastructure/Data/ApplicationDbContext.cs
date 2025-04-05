@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using TakeLeaveMngSystem.Domain.Models;
 using TakeLeaveMngSystem.Domains.Models;
 
 namespace TakeLeaveMngSystem.Infrastructure.Data
@@ -12,6 +13,7 @@ namespace TakeLeaveMngSystem.Infrastructure.Data
         public DbSet<Role> Role { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<Ticket> Ticket { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

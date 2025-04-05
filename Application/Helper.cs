@@ -5,7 +5,7 @@ namespace TakeLeaveMngSystem.Application
     public static class Helper
     {
         //hash string
-        public static string Hash(string input)
+        public static string Hash(string? input)
         {
             return BCrypt.Net.BCrypt.HashPassword(input, workFactor: 12);
         }

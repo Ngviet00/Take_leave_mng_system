@@ -6,4 +6,14 @@ public class ApprovalService
     {
 
     }
+
+    public void Approval()
+    {
+
+    }
+
+    public void GetNextUserApproval()
+    {
+
+    }
 }

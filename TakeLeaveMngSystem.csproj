@@ -14,7 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="EFCore.BulkExtensions" Version="9.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -24,15 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\DTOs\Auth\Requests\" />
-    <Folder Include="Application\DTOs\Auth\Responses\" />
     <Folder Include="Application\DTOs\Ticket\Requests\" />
     <Folder Include="Application\DTOs\Ticket\Responses\" />
-    <Folder Include="Application\DTOs\User\Requests\" />
-    <Folder Include="Application\DTOs\User\Responses\" />
-    <Folder Include="Application\Interfaces\" />
-    <Folder Include="Domain\Common\" />
-    <Folder Include="Presentation\Filters\" />
   </ItemGroup>
 
 </Project>
