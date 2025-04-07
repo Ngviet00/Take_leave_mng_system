@@ -14,6 +14,7 @@ namespace TakeLeaveMngSystem.Infrastructure.Data
         public DbSet<User> User { get; set; }
         public DbSet<Ticket> Ticket { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<ApprovalTicket> ApprovalTickets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

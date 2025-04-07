@@ -26,6 +26,6 @@ namespace TakeLeaveMngSystem.Domains.Models
     {
         public string? Approver { get; set; } = string.Empty;
         public DateTime? ApprovedAt { get; set; }
-        public string? Status { get; set; } = "Created"; // "Created", "Pending", "Approved", "Rejected", "Register Complete",...
+        public string? Status { get; set; } // "Created", "Pending", "Approved", "Rejected", "Register Complete",...
     }
 }

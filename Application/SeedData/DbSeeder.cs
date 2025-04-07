@@ -16,9 +16,10 @@ namespace TakeLeaveMngSystem.Application.SeedData
                     Name = "admin",
                     Password = Helper.Hash("123456"),
                     Email = "admin@vsvn.com",
-                    Deparment = "",
-                    Title = "",
+                    Deparment = "IT",
+                    Title = "Admin",
                     Role = 1,
+                    CreatedAt = DateTime.UtcNow
                 });
 
                 await context.SaveChangesAsync();

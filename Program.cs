@@ -8,6 +8,9 @@ using TakeLeaveMngSystem.Application.Services;
 using TakeLeaveMngSystem.Infrastructure.Data;
 using TakeLeaveMngSystem.Presentation.Middleware;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 namespace TakeLeaveMngSystem
 {
@@ -28,6 +31,22 @@ namespace TakeLeaveMngSystem
 
             // Add services to the container.
             builder.Services.AddControllers();
+
+            // Add localization
+            builder.Services.AddLocalization(options => options.ResourcesPath = "Application/Resources");
+
+            builder.Services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("en"),
+                    new CultureInfo("vi"),
+                };
+
+                options.DefaultRequestCulture = new RequestCulture("en");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -75,10 +94,26 @@ namespace TakeLeaveMngSystem
                 };
             });
 
+            // Configure validation
             builder.Services.Configure<ApiBehaviorOptions>(options =>
             {
-                options.InvalidModelStateResponseFactory = ctx =>
-                    new UnprocessableEntityObjectResult(ctx.ModelState);
+                options.InvalidModelStateResponseFactory = actionContext =>
+                {
+                    var errors = actionContext.ModelState
+                        .Where(e => e.Value.Errors.Count > 0)
+                        .Select(e => new
+                        {
+                            Field = e.Key,
+                            Errors = e.Value.Errors.Select(e => e.ErrorMessage)
+                        });
+
+                    return new UnprocessableEntityObjectResult(new
+                    {
+                        Status = 422,
+                        Message = "Validation failed",
+                        Errors = errors
+                    });
+                };
             });
 
             var app = builder.Build();
@@ -92,8 +127,8 @@ namespace TakeLeaveMngSystem
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-            //    app.UseSwagger();
-            //    app.UseSwaggerUI();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseSwagger();
@@ -105,6 +140,9 @@ namespace TakeLeaveMngSystem
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            // Add localization middleware
+            app.UseRequestLocalization();
 
             app.UseMiddleware<GlobalExceptionMiddleware>();
 

@@ -41,7 +41,7 @@ namespace TakeLeaveMngSystem.Presentation.Controllers
             return Ok(new BaseResponse<Ticket>(200, "Create ticket successfully", ticket));
         }
 
-        [HttpPut("/update")]
+        [HttpPost("/update")]
         public async Task<IActionResult> Update(Ticket ticket)
         {
             Ticket newTicket = await _ticketService.Update(ticket);
